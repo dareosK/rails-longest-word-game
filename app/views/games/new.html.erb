@@ -1,0 +1,23 @@
+<h1>New game</h1>
+
+<ul class="letters">
+  <% @letters.each do |letter| %>
+    <li><%= letter %></li>
+  <% end %>
+</ul>
+
+<p class="form-prefix">What is the longest word you can find?</p>
+
+<form action="/score" method="POST" class="form-inline">
+  <!-- This will add a hidden input field with an authenticity_token that ensures
+    the POST request is coming from your website and not from another -->
+  <!-- https://stackoverflow.com/questions/941594/understanding-the-rails-authenticity-token -->
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :letters, @letters %>
+  <div class="input-group input-group">
+    <input type="text" name="word" class="form-control">
+    <span class="input-group-btn">
+      <input type="submit" value="Play" class="btn btn-default">
+    </span>
+  </div>
+</form>
