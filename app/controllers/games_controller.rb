@@ -17,6 +17,7 @@ class GamesController < ApplicationController
     @word = (params[:word] || "").upcase
     @included = included?(@word, @letters)
     @english_word = english_word?(@word)
+    session[:score] = @word.length * 2 if @word
   end
 
   private
